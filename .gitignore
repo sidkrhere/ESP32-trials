@@ -1,0 +1,54 @@
+# ---- dependencies --------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+
+# ---- build / cache --------------------------------------------------------
+.cache/
+dist/
+build/
+*.tsbuildinfo
+.tmp/
+
+# ---- local environment ----------------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# ---- logs -----------------------------------------------------------------
+logs/
+*.log
+npm-debug.log*
+
+# ---- editor / OS ----------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.code-workspace
+
+# ---- test / coverage ------------------------------------------------------
+coverage/
+.nyc_output/
+
+# ---- local tool artefacts -------------------------------------------------
+# python bytecode from tools/
+__pycache__/
+*.py[cod]
+
+# ---- screenshots / captures produced by the local tools -------------------
+*.local.png
