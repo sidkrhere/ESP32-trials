@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESP32-C3 · MPU6050 · 3D Rectangle Console</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <!-- ---------------- orientation readout ---------------- -->
+  <div class="panel panel-readout" id="readout">
+    <div class="row"><span class="k">PITCH</span><span class="v" id="v-pitch">--</span><span class="u">°</span></div>
+    <div class="row"><span class="k">ROLL</span><span class="v" id="v-roll">--</span><span class="u">°</span></div>
+    <div class="row dim"><span class="k">YAW</span><span class="v" id="v-yaw">--</span><span class="u">°</span></div>
+  </div>
+
+  <!-- ---------------- link statistics ---------------- -->
+  <div class="panel panel-stats" id="stats">
+    <div class="row"><span class="k">STATUS</span><span class="v small" id="s-status">connecting…</span></div>
+    <div class="row"><span class="k">SENSOR</span><span class="v small" id="s-hz">-- Hz</span></div>
+    <div class="row"><span class="k">RENDER</span><span class="v small" id="s-fps">-- fps</span></div>
+    <div class="row"><span class="k">LATENCY</span><span class="v small" id="s-lat">-- ms</span></div>
+    <div class="row"><span class="k">I²C ERR</span><span class="v small" id="s-err">0</span></div>
+    <div class="row"><span class="k">PORT</span><span class="v small" id="s-port">--</span></div>
+  </div>
+
+  <!-- ---------------- controls ---------------- -->
+  <div class="panel panel-controls" id="controls">
+    <div class="ctl-head">CONTROLS</div>
+
+    <label class="ctl">
+      <span>Smoothing</span>
+      <input type="range" id="c-smooth" min="0" max="100" step="1" value="25" />
+      <span class="ctl-val" id="v-smooth">25 ms</span>
+    </label>
+
+    <label class="ctl chk">
+      <input type="checkbox" id="c-invpitch" />
+      <span>Invert pitch</span>
+    </label>
+
+    <label class="ctl chk">
+      <input type="checkbox" id="c-invroll" />
+      <span>Invert roll</span>
+    </label>
+
+    <label class="ctl chk">
+      <input type="checkbox" id="c-applyyaw" />
+      <span>Apply yaw to rectangle <em>(drifts)</em></span>
+    </label>
+
+    <button id="c-reset" class="btn">Recalibrate neutral</button>
+    <div class="hint" id="c-hint">Press <kbd>R</kbd> on the sensor? No — restart the ESP32 to recalibrate.</div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
